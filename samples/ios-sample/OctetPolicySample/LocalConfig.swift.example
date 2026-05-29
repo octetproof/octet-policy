@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Understone, Inc.
+//
+// Template for LocalConfig.swift. Copy this file to LocalConfig.swift
+// in this same directory and fill in your octet license key:
+//
+//     cp LocalConfig.swift.example LocalConfig.swift
+//
+// LocalConfig.swift is gitignored, so your live key stays on your
+// machine. The Xcode project references it, so the file must exist —
+// if it's missing the build fails with
+// "Build input file cannot be found: …/LocalConfig.swift".
+// (Same idea as Local.xcconfig for your signing team.)
+
+enum LocalConfig {
+    /// Your octet license key (e.g. "octet_live_…").
+    static let octetLicenseKey = "octet_live_REPLACE_ME"
+}

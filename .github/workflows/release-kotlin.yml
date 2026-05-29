@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Understone, Inc.
+
+name: Release Kotlin
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write   # for pushing to the mvn-repo branch
+
+# The octet-sdk AAR is now consumed from the public
+# octet-sdk-android mvn-repo branch (no sibling checkout, no PAT).
+
+jobs:
+  release:
+    name: Test, publish, push to mvn-repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out octetpolicy
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so the mvn-repo push step can clone
+
+      - name: Extract version
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Sanity-check VERSION agrees with tag
+        run: |
+          v_in_file="$(tr -d '[:space:]' < VERSION)"
+          if [ "$v_in_file" != "${{ steps.ver.outputs.version }}" ]; then
+              echo "VERSION file says '$v_in_file' but tag is '${{ steps.ver.outputs.version }}'"
+              echo "Update VERSION to match the tag and re-tag."
+              exit 1
+          fi
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Run Kotlin tests
+        working-directory: kotlin
+        run: ./gradlew testDebugUnitTest :policy-core:test --no-daemon
+
+      - name: Verify clean Maven consumer
+        run: bash kotlin/scripts/verify-consumer-maven.sh
+
+      - name: Publish to local Maven repo
+        working-directory: kotlin
+        run: ./gradlew publishAllPublicationsToLocalMvnRepoRepository --no-daemon
+
+      - name: Push artifacts to mvn-repo branch
+        run: bash kotlin/scripts/publish-to-mvn-branch.sh "${{ steps.ver.outputs.version }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

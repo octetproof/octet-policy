@@ -1,0 +1,105 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Understone, Inc.
+
+name: Release Swift
+
+on:
+  push:
+    tags: ['v*']
+
+# The octet-sdk xcframework is now consumed via the public SwiftPM URL
+# (github.com/octetproof/octet-sdk-ios), so the SDK no longer needs a
+# sibling checkout or the OCTET_SDK_PAT secret.
+
+jobs:
+  release:
+    name: Test, verify, GitHub release
+    # macos-15 is required: the octet-sdk xcframework is iOS-only, so
+    # we exercise it via `xcodebuild test` on an iOS Simulator.
+    runs-on: macos-15
+    permissions:
+      contents: write   # for creating the GitHub release
+    steps:
+      - name: Check out octetpolicy
+        uses: actions/checkout@v4
+
+      - name: Extract version
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Sanity-check VERSION agrees with tag
+        run: |
+          v_in_file="$(tr -d '[:space:]' < VERSION)"
+          if [ "$v_in_file" != "${{ steps.ver.outputs.version }}" ]; then
+              echo "VERSION file says '$v_in_file' but tag is '${{ steps.ver.outputs.version }}'"
+              echo "Update VERSION to match the tag and re-tag."
+              exit 1
+          fi
+
+      - name: Pick available iOS Simulator
+        id: sim
+        # macos-15 runner images don't always pre-create the same set of
+        # simulators (e.g. one rev has iPhone 16, another doesn't). Pick
+        # any available one at runtime rather than hardcoding a name.
+        run: |
+          UDID=$(xcrun simctl list devices available -j | jq -r '
+            [.devices | to_entries[] | select(.key | test("iOS")) | .value[]
+              | select(.isAvailable and (.name | startswith("iPhone")))]
+            | first | .udid // empty')
+          if [ -z "$UDID" ]; then
+            echo "No iPhone simulator available; falling back to first available iOS device."
+            UDID=$(xcrun simctl list devices available -j | jq -r '
+              [.devices | to_entries[] | select(.key | test("iOS")) | .value[]
+                | select(.isAvailable)] | first | .udid // empty')
+          fi
+          if [ -z "$UDID" ]; then
+            echo "ERROR: no available iOS simulators on this runner."
+            xcrun simctl list devices available
+            exit 1
+          fi
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          echo "Selected simulator UDID: $UDID"
+          xcrun simctl list devices | grep "$UDID" || true
+
+      - name: Run Swift tests on iOS Simulator
+        # Scheme name is the auto-generated package scheme (matches the
+        # Package.swift `name:` field), NOT the product/library name.
+        run: |
+          xcodebuild test \
+            -scheme octetpolicy-Package \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Verify clean SPM consumer
+        run: bash swift/scripts/verify-consumer-spm.sh
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          body: |
+            OctetPolicy — ${{ github.ref_name }}
+
+            ## Swift / SPM
+
+            ```swift
+            // Package.swift
+            .package(url: "https://github.com/octetproof/octet-policy", exact: "${{ steps.ver.outputs.version }}")
+            ```
+
+            Add the `OctetPolicy` product to your target. `import OctetPolicy` brings in every predicate.
+
+            ## Kotlin / Maven
+
+            ```kotlin
+            // settings.gradle.kts
+            maven { url = uri("https://raw.githubusercontent.com/octetproof/octet-policy/mvn-repo") }
+
+            // build.gradle.kts
+            implementation("com.octetproof:octetpolicy:${{ steps.ver.outputs.version }}")
+            ```
+
+            See the [README](https://github.com/octetproof/octet-policy/blob/main/README.md) for sample apps and consumer setup.

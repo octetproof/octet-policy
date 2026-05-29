@@ -1,0 +1,141 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Understone, Inc.
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Cancel an in-progress run when a newer commit lands on the same ref, so
+# rapid pushes to a PR don't stack up runner minutes (the Swift job burns
+# 10x-rate macOS minutes — see below).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Both the Swift and Kotlin jobs now consume the octet-sdk from its
+# public distribution channels — the iOS xcframework via SwiftPM URL and
+# the Android AAR via the public mvn-repo branch. No sibling SDK
+# checkout, no PAT.
+
+jobs:
+  # Detect which language's sources changed so we only spend runner
+  # minutes on the affected job. The shared data files (countries.json /
+  # states.json) feed BOTH platforms, so they trigger both; a change to
+  # this workflow re-runs everything.
+  changes:
+    name: Detect changed areas
+    runs-on: ubuntu-latest
+    outputs:
+      swift: ${{ steps.filter.outputs.swift }}
+      kotlin: ${{ steps.filter.outputs.kotlin }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            swift:
+              - 'swift/**'
+              - 'policies/**/swift/**'
+              - 'policies/**/*.json'
+              - 'Package.swift'
+              - '.github/workflows/ci.yml'
+            kotlin:
+              - 'kotlin/**'
+              - 'policies/**/kotlin/**'
+              - 'policies/**/*.json'
+              - '.github/workflows/ci.yml'
+
+  spdx-lint:
+    name: SPDX header lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check SPDX headers
+        run: bash scripts/check-spdx-headers.sh
+
+  version-sync-lint:
+    name: VERSION sync lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check version references match VERSION file
+        run: bash scripts/check-version-sync.sh
+
+  swift:
+    name: Swift tests + consumer
+    # Only run when Swift-relevant files changed (gated by the `changes`
+    # job) — this is the expensive macOS runner, so we skip it on
+    # Kotlin-only / docs-only changes.
+    needs: changes
+    if: ${{ needs.changes.outputs.swift == 'true' }}
+    # macos-15 is required: the octet-sdk xcframework is iOS-only, so we
+    # exercise it via `xcodebuild test` on an iOS Simulator. Swift CANNOT
+    # move to Linux — the SDK imports Apple-only frameworks
+    # (CoreLocation, CoreMotion, DeviceCheck, CoreTelephony) that don't
+    # exist in Linux Swift.
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show Swift / Xcode version
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Pick available iOS Simulator
+        id: sim
+        # macos-15 runner images don't always pre-create the same set of
+        # simulators (e.g. one rev has iPhone 16, another doesn't). Pick
+        # any available one at runtime rather than hardcoding a name.
+        run: |
+          UDID=$(xcrun simctl list devices available -j | jq -r '
+            [.devices | to_entries[] | select(.key | test("iOS")) | .value[]
+              | select(.isAvailable and (.name | startswith("iPhone")))]
+            | first | .udid // empty')
+          if [ -z "$UDID" ]; then
+            echo "No iPhone simulator available; falling back to first available iOS device."
+            UDID=$(xcrun simctl list devices available -j | jq -r '
+              [.devices | to_entries[] | select(.key | test("iOS")) | .value[]
+                | select(.isAvailable)] | first | .udid // empty')
+          fi
+          if [ -z "$UDID" ]; then
+            echo "ERROR: no available iOS simulators on this runner."
+            xcrun simctl list devices available
+            exit 1
+          fi
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          echo "Selected simulator UDID: $UDID"
+          xcrun simctl list devices | grep "$UDID" || true
+
+      - name: Run Swift tests on iOS Simulator
+        # Scheme name is the auto-generated package scheme (matches the
+        # Package.swift `name:` field), NOT the product/library name.
+        run: |
+          xcodebuild test \
+            -scheme octetpolicy-Package \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Verify clean SPM consumer
+        run: bash swift/scripts/verify-consumer-spm.sh
+
+  kotlin:
+    name: Kotlin tests + consumer
+    needs: changes
+    if: ${{ needs.changes.outputs.kotlin == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Run Kotlin tests
+        working-directory: kotlin
+        run: ./gradlew testDebugUnitTest :policy-core:test --no-daemon
+      - name: Verify clean Maven consumer
+        run: bash kotlin/scripts/verify-consumer-maven.sh

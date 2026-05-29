@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Understone, Inc.
+//
+// Shared build settings for the OctetPolicySample iOS app.
+//
+// The optional `#include?` below pulls in Local.xcconfig if you've
+// created one. Local.xcconfig is gitignored — it's where you put
+// your personal DEVELOPMENT_TEAM (your Apple Developer Team ID)
+// and an override PRODUCT_BUNDLE_IDENTIFIER if the default is
+// taken. See OctetPolicySample/Local.xcconfig.example for the
+// template.
+//
+// Without Local.xcconfig the build will fail at code-signing with
+// a missing-team error. That's the prompt to copy the .example
+// file and fill in your values.
+
+#include? "Local.xcconfig"
+
+// Default bundle identifier. Override in Local.xcconfig if Apple
+// rejects it as unavailable (it will, unless you're in the
+// `octetproof` team).
+PRODUCT_BUNDLE_IDENTIFIER = com.octetproof.OctetPolicySample
+
+// DEVELOPMENT_TEAM is intentionally unset here. You set it in
+// Local.xcconfig (see Local.xcconfig.example). If you set it via
+// Xcode's Signing & Capabilities UI instead, Xcode writes the
+// value into project.pbxproj — which then leaks to git. Don't
+// commit that. The xcconfig flow exists exactly to avoid this.

@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Understone, Inc.
+//
+// Template for Local.xcconfig. Copy this file to Local.xcconfig
+// in this same directory, then fill in your values:
+//
+//     cp Local.xcconfig.example Local.xcconfig
+//
+// Local.xcconfig is gitignored, so your values stay on your
+// machine.
+
+// Your Apple Developer Team ID. 10 characters, A–Z / 0–9.
+//
+// Where to find it:
+//   - https://developer.apple.com/account → Membership → Team ID
+//   - or Xcode → Settings → Accounts → click your Apple ID → Team → details
+//
+// Example:
+//   DEVELOPMENT_TEAM = J8F92W9G9S
+DEVELOPMENT_TEAM = YOUR_TEAM_ID_HERE
+
+// Bundle identifier. Reverse-DNS, must be globally unique in
+// Apple's namespace. If `com.octetproof.OctetPolicySample` is
+// taken (it is, unless you're in the `octetproof` team), change
+// this to something with your own prefix:
+//
+//   PRODUCT_BUNDLE_IDENTIFIER = com.YOUR-NAME.OctetPolicySample
+PRODUCT_BUNDLE_IDENTIFIER = com.YOUR-NAME.OctetPolicySample

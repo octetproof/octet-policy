@@ -1,0 +1,20 @@
+# Octet Policy SDK — CODEOWNERS
+#
+# Every change to policy data files (countries.json, states.json) and
+# their sources.md requires review from a named compliance reviewer.
+# Code changes follow normal engineering review.
+#
+# CODEOWNERS is advisory unless GitHub branch protection on `main` is
+# configured to require code-owner review. That setting must be turned
+# on — see README.md "For maintainers — branch protection".
+
+# --- Default: any engineering reviewer ---
+*                                       @octethacker
+
+# --- Data files: compliance review required ---
+policies/*/countries.json               @btf8000 @drew-octet
+policies/*/states.json                  @btf8000 @drew-octet
+policies/*/sources.md                   @btf8000 @drew-octet
+
+# --- The OFAC predicate is highest-stakes; require both reviewers ---
+policies/isOfacComprehensive/           @btf8000 @drew-octet

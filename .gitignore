@@ -1,0 +1,41 @@
+# SwiftPM
+.build/
+Package.resolved
+.swiftpm/
+
+# Xcode per-user state
+xcuserdata/
+*.xcuserstate
+
+# xcodegen output. The committed source of truth is
+# samples/ios-sample/project.yml — run `xcodegen generate` from
+# samples/ios-sample/ to (re)create the .xcodeproj locally.
+samples/ios-sample/*.xcodeproj
+
+# Per-developer xcconfig overlays (sample apps): hold each user's
+# DEVELOPMENT_TEAM and bundle ID. Tracked counterpart is
+# `Local.xcconfig.example` — see samples/ios-sample/README.md.
+Local.xcconfig
+
+# iOS sample license key (Swift). Tracked counterpart is
+# LocalConfig.swift.example.
+LocalConfig.swift
+
+# Gradle / Kotlin
+.gradle/
+build/
+.kotlin/
+local.properties
+*.iml
+
+# IDEs
+.idea/
+
+# macOS
+.DS_Store
+
+# Maintainer-only planning docs — kept locally, not part of the
+# public/shared repo. CLAUDE.md is the agent instruction file.
+CLAUDE.md
+octetpolicy-design.md
+octetpolicy-distribution-guide.md

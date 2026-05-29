@@ -1,0 +1,55 @@
+{
+  "list_id": "ofac_comprehensive",
+  "policy_version": "0.0.1-alpha",
+  "effective_date": "2026-05-25",
+  "entries": [
+    {
+      "iso_3166_1": "CU",
+      "name": "Cuba",
+      "subdivision": null,
+      "source_url": "https://ofac.treasury.gov/sanctions-programs-and-country-information/cuba-sanctions",
+      "added_on": "2026-05-25",
+      "reviewed_by": "@btf8000"
+    },
+    {
+      "iso_3166_1": "IR",
+      "name": "Iran",
+      "subdivision": null,
+      "source_url": "https://ofac.treasury.gov/sanctions-programs-and-country-information/iran-sanctions",
+      "added_on": "2026-05-25",
+      "reviewed_by": "@btf8000"
+    },
+    {
+      "iso_3166_1": "KP",
+      "name": "North Korea",
+      "subdivision": null,
+      "source_url": "https://ofac.treasury.gov/sanctions-programs-and-country-information/north-korea-sanctions",
+      "added_on": "2026-05-25",
+      "reviewed_by": "@btf8000"
+    },
+    {
+      "iso_3166_1": "UA",
+      "name": "Crimea (Ukraine)",
+      "subdivision": "43",
+      "source_url": "https://ofac.treasury.gov/sanctions-programs-and-country-information/ukraine-russia-related-sanctions",
+      "added_on": "2026-05-25",
+      "reviewed_by": "@btf8000"
+    },
+    {
+      "iso_3166_1": "UA",
+      "name": "Donetsk Oblast (Ukraine)",
+      "subdivision": "14",
+      "source_url": "https://ofac.treasury.gov/sanctions-programs-and-country-information/ukraine-russia-related-sanctions",
+      "added_on": "2026-05-25",
+      "reviewed_by": "@btf8000"
+    },
+    {
+      "iso_3166_1": "UA",
+      "name": "Luhansk Oblast (Ukraine)",
+      "subdivision": "09",
+      "source_url": "https://ofac.treasury.gov/sanctions-programs-and-country-information/ukraine-russia-related-sanctions",
+      "added_on": "2026-05-25",
+      "reviewed_by": "@btf8000"
+    }
+  ]
+}

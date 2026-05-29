@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Understone, Inc.
+#
+# xcodegen spec for the iOS sample. Generate the .xcodeproj with:
+#
+#     cd samples/ios-sample && xcodegen generate
+#
+# The .xcodeproj is committed alongside this spec so users don't need
+# xcodegen installed to open the project — they only need it if they
+# edit `project.yml` and want to regenerate.
+
+name: OctetPolicySample
+
+options:
+  bundleIdPrefix: com.octetproof
+  deploymentTarget:
+    iOS: "16.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+
+targets:
+  OctetPolicySample:
+    type: application
+    platform: iOS
+    sources:
+      - path: OctetPolicySample
+    # PRODUCT_BUNDLE_IDENTIFIER and DEVELOPMENT_TEAM come from
+    # OctetPolicySample/OctetPolicySample.xcconfig, which optionally
+    # includes Local.xcconfig (gitignored) for per-developer
+    # overrides. See OctetPolicySample/Local.xcconfig.example.
+    configFiles:
+      Debug:   OctetPolicySample/OctetPolicySample.xcconfig
+      Release: OctetPolicySample/OctetPolicySample.xcconfig
+    settings:
+      base:
+        PRODUCT_NAME: OctetPolicySample
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "5.9"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        # The SDK needs a location fix and the map shows where you are.
+        # (The license key is read from LocalConfig.swift, not Info.plist.)
+        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Shows your location on the map and lets the OctetPolicy predicates evaluate where this device is."
+        # The SDK fuses motion sensors (IMU dead-reckoning) into its
+        # location proof, which requires the CoreMotion usage string.
+        INFOPLIST_KEY_NSMotionUsageDescription: "Uses motion sensors to strengthen the location proof the OctetPolicy predicates evaluate."
+    dependencies:
+      - package: OctetPolicySDK
+        product: OctetPolicy
+
+packages:
+  OctetPolicySDK:
+    # Local development: consume octetpolicy from the repo working copy
+    # (../.. = repo root). The package itself resolves the octet-sdk
+    # binary xcframework from github.com/octetproof/octet-sdk-ios.
+    #
+    # Once you want to consume a tagged release instead of the local
+    # source, switch this to the published tag:
+    #   url: https://github.com/octetproof/octet-policy
+    #   exact: "0.0.1-alpha"
+    path: ../..
