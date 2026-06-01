@@ -1,0 +1,104 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "is-ofac-comprehensive",
+    "version": "0.0.1-alpha",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.1-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-ofac-comprehensive-0.0.1-alpha.aar",
+          "url": "is-ofac-comprehensive-0.0.1-alpha.aar",
+          "size": 22710,
+          "sha512": "51596ea4b33225d75dba1bd9e0d4e403d900315b58bbf21ed4623040314df3e0942b164d5a959b10c25c7117e94c04bd6c847b78046990925457843ab1bd7668",
+          "sha256": "da3b51321dd5596a984f23e2051aedd3beef9e8c0e8e2230199885f6139f1314",
+          "sha1": "ac081c22546b06d3323dce7dc934f104d40c3bfc",
+          "md5": "639533fde8d4b356c26e6eaa6bc9e7dd"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "0.0.1-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.1-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-ofac-comprehensive-0.0.1-alpha.aar",
+          "url": "is-ofac-comprehensive-0.0.1-alpha.aar",
+          "size": 22710,
+          "sha512": "51596ea4b33225d75dba1bd9e0d4e403d900315b58bbf21ed4623040314df3e0942b164d5a959b10c25c7117e94c04bd6c847b78046990925457843ab1bd7668",
+          "sha256": "da3b51321dd5596a984f23e2051aedd3beef9e8c0e8e2230199885f6139f1314",
+          "sha1": "ac081c22546b06d3323dce7dc934f104d40c3bfc",
+          "md5": "639533fde8d4b356c26e6eaa6bc9e7dd"
+        }
+      ]
+    }
+  ]
+}

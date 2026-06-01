@@ -1,0 +1,97 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "is-singapore",
+    "version": "0.0.1-alpha",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.1-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-singapore-0.0.1-alpha.aar",
+          "url": "is-singapore-0.0.1-alpha.aar",
+          "size": 6271,
+          "sha512": "65885134b391b5f21f663c4b1f9bd56504c79588a25d670b2e9bbe31c83579bec648d38a7ce7cbca128c712af327902a1e0f78b5e875e727a92b06be1b0dd4e0",
+          "sha256": "33163e8ac26c6e94374c5f6ee7d970da8a0626a3d8cc6e3b10348ebbada4af20",
+          "sha1": "3030355567e2acb15c70a36787440c6bbfaa0592",
+          "md5": "5298147cb96452aed7097827dbe913e9"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "0.0.1-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.1-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-singapore-0.0.1-alpha.aar",
+          "url": "is-singapore-0.0.1-alpha.aar",
+          "size": 6271,
+          "sha512": "65885134b391b5f21f663c4b1f9bd56504c79588a25d670b2e9bbe31c83579bec648d38a7ce7cbca128c712af327902a1e0f78b5e875e727a92b06be1b0dd4e0",
+          "sha256": "33163e8ac26c6e94374c5f6ee7d970da8a0626a3d8cc6e3b10348ebbada4af20",
+          "sha1": "3030355567e2acb15c70a36787440c6bbfaa0592",
+          "md5": "5298147cb96452aed7097827dbe913e9"
+        }
+      ]
+    }
+  ]
+}
