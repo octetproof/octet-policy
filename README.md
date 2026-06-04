@@ -14,7 +14,7 @@ code.
 
 ## Status
 
-Pre-stable — currently `0.0.1-alpha`. API, naming, and on-disk
+Pre-stable — currently `0.0.2-alpha`. API, naming, and on-disk
 surface may still change across `0.0.x`. `v1.0.0` will be the first
 stable release.
 
@@ -52,7 +52,7 @@ OctetSDK.
 ```swift
 // Package.swift
 dependencies: [
-    .package(url: "https://github.com/octetproof/octet-policy", exact: "0.0.1-alpha"),
+    .package(url: "https://github.com/octetproof/octet-policy", exact: "0.0.2-alpha"),
 ],
 targets: [
     .target(
@@ -100,7 +100,7 @@ In your app `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.octetproof:octetpolicy:0.0.1-alpha")
+    implementation("com.octetproof:octetpolicy:0.0.2-alpha")
 }
 ```
 

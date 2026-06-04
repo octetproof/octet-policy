@@ -12,5 +12,5 @@ import Foundation
 public enum PolicyPackage {
     /// Semantic version of this policy package. Matches the root
     /// `VERSION` file.
-    public static let version = "0.0.1-alpha"
+    public static let version = "0.0.2-alpha"
 }

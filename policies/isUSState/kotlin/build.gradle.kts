@@ -49,7 +49,7 @@ tasks.named("preBuild").configure { dependsOn(copyPolicyData) }
 
 dependencies {
     implementation(project(":policy-core"))
-    api("com.octetproof:sdk:0.0.1-alpha")
+    api("com.octetproof:sdk:0.0.2-alpha")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     testImplementation(kotlin("test-junit5"))

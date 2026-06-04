@@ -13,6 +13,33 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 - Nothing yet.
 
+## [0.0.2-alpha] — 2026-06-04
+
+### Changed
+
+- Bumped the upstream `OctetSDK` pin to `0.0.2-alpha` on both
+  platforms (`com.octetproof:sdk:0.0.2-alpha`,
+  `octet-sdk-ios` exact `0.0.2-alpha`). OctetSDK 0.0.2-alpha is
+  wire-breaking against v0-alpha license keys — **consumers
+  upgrading must re-issue their license key** from
+  [sdk.octetproof.com/signup](https://sdk.octetproof.com/signup).
+- octetpolicy's own public API and the policy data lists are
+  **unchanged** from `0.0.1-alpha`. Only the SDK pin moved.
+
+### Notes for consumers
+
+- The OctetSDK's `Octet.start(config:, startPosition:)` and
+  `loc.isWithin(region:, atTime:)` signatures are unchanged — no
+  call-site edits required.
+- The license token format changed underneath (PASETO claim
+  schema, device fingerprint, anti-rollback clock); none of that
+  is visible at the call site. Paste the new token in and
+  `Octet.start` handles it.
+- `OctetConfig`'s `activationServerUrl` defaults to
+  `https://api.octetproof.com` — override only if you run against
+  a local backend.
+- `0.0.1-alpha` is **deprecated**.
+
 ## [0.0.1-alpha] — 2026-05-29
 
 First public release. Pre-stable — API, naming, and on-disk surface
