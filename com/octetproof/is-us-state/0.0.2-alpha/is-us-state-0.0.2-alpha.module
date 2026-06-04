@@ -1,0 +1,104 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "is-us-state",
+    "version": "0.0.2-alpha",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-us-state-0.0.2-alpha.aar",
+          "url": "is-us-state-0.0.2-alpha.aar",
+          "size": 23507,
+          "sha512": "27cac2690a14b8814f2c3b869d7071cab7be19c393719c633ccb74ed0b455a442ace2614e96b03ca6efab01ea14ef62ca6cf7fc07c1cb54e2fed87eae12044a9",
+          "sha256": "19175201c4d62c5287ed780502002babebc2a9bb9a3cf1edbad5e4d773abb208",
+          "sha1": "65c40aa799c9d3ddfdd9b7dc6898ae9063c16d23",
+          "md5": "da82c63c628e90d6a16def0a0d5415cb"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-us-state-0.0.2-alpha.aar",
+          "url": "is-us-state-0.0.2-alpha.aar",
+          "size": 23507,
+          "sha512": "27cac2690a14b8814f2c3b869d7071cab7be19c393719c633ccb74ed0b455a442ace2614e96b03ca6efab01ea14ef62ca6cf7fc07c1cb54e2fed87eae12044a9",
+          "sha256": "19175201c4d62c5287ed780502002babebc2a9bb9a3cf1edbad5e4d773abb208",
+          "sha1": "65c40aa799c9d3ddfdd9b7dc6898ae9063c16d23",
+          "md5": "da82c63c628e90d6a16def0a0d5415cb"
+        }
+      ]
+    }
+  ]
+}

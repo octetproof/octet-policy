@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "octetpolicy",
+    "version": "0.0.2-alpha",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-singapore",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-us",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-ofac-comprehensive",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-us-state",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "octetpolicy-0.0.2-alpha.aar",
+          "url": "octetpolicy-0.0.2-alpha.aar",
+          "size": 1558,
+          "sha512": "3c73fc8ff51e8db60cf99c8e42f786e088d989eaa928d6b3b1e359d59c9479e46e6f7bfa41bd082c2bce56f8e6cb1ed52ec1811af8c2d080234b5de9e148805b",
+          "sha256": "ee4915cc365769b0d47779d968700e914e0badea3bc00df75f19c434284d0ea6",
+          "sha1": "3ab4e8b8c10d1126b72648626210b88e30ff4139",
+          "md5": "aa0fabed334d55d2e602875cfcfff12b"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-singapore",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-us",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-ofac-comprehensive",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "is-us-state",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "octetpolicy-0.0.2-alpha.aar",
+          "url": "octetpolicy-0.0.2-alpha.aar",
+          "size": 1558,
+          "sha512": "3c73fc8ff51e8db60cf99c8e42f786e088d989eaa928d6b3b1e359d59c9479e46e6f7bfa41bd082c2bce56f8e6cb1ed52ec1811af8c2d080234b5de9e148805b",
+          "sha256": "ee4915cc365769b0d47779d968700e914e0badea3bc00df75f19c434284d0ea6",
+          "sha1": "3ab4e8b8c10d1126b72648626210b88e30ff4139",
+          "md5": "aa0fabed334d55d2e602875cfcfff12b"
+        }
+      ]
+    }
+  ]
+}

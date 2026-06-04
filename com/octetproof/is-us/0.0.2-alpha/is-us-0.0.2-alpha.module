@@ -1,0 +1,97 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "is-us",
+    "version": "0.0.2-alpha",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-us-0.0.2-alpha.aar",
+          "url": "is-us-0.0.2-alpha.aar",
+          "size": 6210,
+          "sha512": "e49cabe287fc463739ca4a46d1f78f2bf8ddd0913c58232af930005f216c2f947b5904082c16dba1a990dc546714591a8b9a1a731073a5dcdcbb6826a42298a7",
+          "sha256": "74afd2b82d7c27dcbcc2cdd472de720c511e479f4594fae0a56bad3bd9e35aa6",
+          "sha1": "f926cb8612c3c12091f9fbc05abb83af8492c563",
+          "md5": "890f6054fc2683266921dd6d7a339328"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "0.0.2-alpha"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-us-0.0.2-alpha.aar",
+          "url": "is-us-0.0.2-alpha.aar",
+          "size": 6210,
+          "sha512": "e49cabe287fc463739ca4a46d1f78f2bf8ddd0913c58232af930005f216c2f947b5904082c16dba1a990dc546714591a8b9a1a731073a5dcdcbb6826a42298a7",
+          "sha256": "74afd2b82d7c27dcbcc2cdd472de720c511e479f4594fae0a56bad3bd9e35aa6",
+          "sha1": "f926cb8612c3c12091f9fbc05abb83af8492c563",
+          "md5": "890f6054fc2683266921dd6d7a339328"
+        }
+      ]
+    }
+  ]
+}

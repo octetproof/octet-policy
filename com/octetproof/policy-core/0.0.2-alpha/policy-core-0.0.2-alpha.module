@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "policy-core",
+    "version": "0.0.2-alpha",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "policy-core-0.0.2-alpha.jar",
+          "url": "policy-core-0.0.2-alpha.jar",
+          "size": 6429,
+          "sha512": "eefb5e8a6e13e2287b24865fd934168b69cb21dab0f79faf2892620fd51075d6e3726a12d7493fed22b55beca6eb69b377685c4e448647d072520239e8b41cec",
+          "sha256": "3367f9eee6cf6ed580f5c77615d1e63ec5af6e1680cfa89de40969f4b58a0fba",
+          "sha1": "52a65626767b0f95e9216caa02347404badcfcbb",
+          "md5": "d1efbeffb17bee1a0d5f3ed94c2c4cae"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "policy-core-0.0.2-alpha.jar",
+          "url": "policy-core-0.0.2-alpha.jar",
+          "size": 6429,
+          "sha512": "eefb5e8a6e13e2287b24865fd934168b69cb21dab0f79faf2892620fd51075d6e3726a12d7493fed22b55beca6eb69b377685c4e448647d072520239e8b41cec",
+          "sha256": "3367f9eee6cf6ed580f5c77615d1e63ec5af6e1680cfa89de40969f4b58a0fba",
+          "sha1": "52a65626767b0f95e9216caa02347404badcfcbb",
+          "md5": "d1efbeffb17bee1a0d5f3ed94c2c4cae"
+        }
+      ]
+    }
+  ]
+}
