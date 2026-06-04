@@ -15,6 +15,18 @@ Each entry must include:
 - A semver bump in the top-level `VERSION` file and
   `PolicyPackage.version`.
 
+## [0.0.2-alpha] — 2026-06-04
+
+### Changed
+
+- `policy_version` in [`countries.json`](countries.json) bumped from
+  `0.0.1-alpha` to `0.0.2-alpha` to align with the package version.
+  **No data changes** — same six entries (CU, IR, KP, UA-43, UA-14,
+  UA-09) as `0.0.1-alpha`.
+
+Reviewer: `@btf8000` — version-bump-only; the initial-list review
+from `0.0.1-alpha` (completed 2026-05-29) carries through unchanged.
+
 ## [0.0.1-alpha] — 2026-05-29
 
 ### Added — initial list

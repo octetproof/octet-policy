@@ -19,5 +19,5 @@ package com.octetproof.octetpolicy
 object PolicyPackage {
     /** Semantic version of this policy package. Matches the root
      *  `VERSION` file. */
-    const val VERSION: String = "0.0.1-alpha"
+    const val VERSION: String = "0.0.2-alpha"
 }

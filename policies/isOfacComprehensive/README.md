@@ -19,7 +19,7 @@ region. This predicate covers only the comprehensive ones.
 If you need SDN name screening, you need a KYC product. **This is
 not that.** See [`sources.md`](sources.md).
 
-## Current list — effective 2026-05-25, package version 0.0.1-alpha
+## Current list — effective 2026-05-25, package version 0.0.2-alpha
 
 | ISO 3166                | Name                              |
 |-------------------------|-----------------------------------|

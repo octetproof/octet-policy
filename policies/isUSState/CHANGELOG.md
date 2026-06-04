@@ -11,6 +11,18 @@ Changes would only happen if ISO 3166-2:US itself changes
 Minor Outlying Islands in 2010; not currently in our list — see
 [`sources.md`](sources.md)).
 
+## [0.0.2-alpha] — 2026-06-04
+
+### Changed
+
+- `policy_version` in [`states.json`](states.json) bumped from
+  `0.0.1-alpha` to `0.0.2-alpha` to align with the package version.
+  **No data changes** — same 56 entries (50 states + DC + 5
+  territories) as `0.0.1-alpha`.
+
+Reviewer: `@btf8000` — version-bump-only; the initial-list review
+from `0.0.1-alpha` (completed 2026-05-29) carries through unchanged.
+
 ## [0.0.1-alpha] — 2026-05-29
 
 ### Added — initial list
