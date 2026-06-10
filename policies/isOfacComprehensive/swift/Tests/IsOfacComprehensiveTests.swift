@@ -92,4 +92,53 @@ final class IsOfacComprehensiveTests: XCTestCase {
     func test_list_policy_version_matches_package_version() {
         XCTAssertEqual(OfacList.file.policyVersion, PolicyPackage.version)
     }
+
+    // MARK: - Loader leniency parity with Kotlin
+    //
+    // Mirrors `IsOfacComprehensiveTests.kt`. countries.json may grow
+    // audit-metadata fields (top-level or per-entry) the way
+    // states.json already grew `source_note`. The default
+    // `JSONDecoder` ignores unknown keys; Kotlin's default does not.
+    // We fence that divergence here so a future regression to strict
+    // decoding on either platform fails the build. (Part of the
+    // octet-sdks audit M13 lockstep fix.)
+
+    func test_decoder_ignores_unknown_top_level_keys() throws {
+        let json = """
+        {
+          "list_id": "ofac_comprehensive",
+          "policy_version": "0.0.0-test",
+          "effective_date": "2026-01-01",
+          "audit_note": "trailing key the loader must ignore",
+          "entries": []
+        }
+        """.data(using: .utf8)!
+        let parsed = try OfacList.decode(json)
+        XCTAssertEqual(parsed.listId, "ofac_comprehensive")
+        XCTAssertTrue(parsed.entries.isEmpty)
+    }
+
+    func test_decoder_ignores_unknown_per_entry_keys() throws {
+        let json = """
+        {
+          "list_id": "ofac_comprehensive",
+          "policy_version": "0.0.0-test",
+          "effective_date": "2026-01-01",
+          "entries": [
+            {
+              "iso_3166_1": "CU",
+              "name": "Cuba",
+              "subdivision": null,
+              "source_url": "https://example.test",
+              "added_on": "2026-01-01",
+              "reviewed_by": "@reviewer",
+              "audit_internal": "trailing per-entry key the loader must ignore"
+            }
+          ]
+        }
+        """.data(using: .utf8)!
+        let parsed = try OfacList.decode(json)
+        XCTAssertEqual(parsed.entries.count, 1)
+        XCTAssertEqual(parsed.entries.first?.iso3166_1, "CU")
+    }
 }

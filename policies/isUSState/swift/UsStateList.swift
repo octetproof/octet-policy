@@ -50,13 +50,23 @@ enum UsStateList {
     /// input.
     static let validCodes: Set<String> = Set(file.entries.map { $0.code })
 
+    /// Test seam exposing the loader's exact JSON decoder. Lets the
+    /// parity tests pin lockstep with the Kotlin side — a regression
+    /// to strict decoding here fails those tests. `JSONDecoder` is
+    /// lenient by default (unknown keys silently ignored), and that
+    /// behaviour is load-bearing: `states.json` carries a top-level
+    /// `source_note` audit field today.
+    static func decode(_ data: Data) throws -> UsStateListFile {
+        try JSONDecoder().decode(UsStateListFile.self, from: data)
+    }
+
     private static func loadFromBundle() -> UsStateListFile {
         guard let url = Bundle.module.url(forResource: "states", withExtension: "json") else {
             fatalError("IsUSState: states.json missing from module bundle. This is a build error.")
         }
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode(UsStateListFile.self, from: data)
+            return try decode(data)
         } catch {
             fatalError("IsUSState: states.json failed to decode: \(error). This is a build error.")
         }

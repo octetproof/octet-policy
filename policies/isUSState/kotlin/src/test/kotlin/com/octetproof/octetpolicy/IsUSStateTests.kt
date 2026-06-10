@@ -177,4 +177,46 @@ class IsUSStateTests {
     fun `list policy version matches package version`() {
         assertEquals(PolicyPackage.VERSION, UsStateList.file.policyVersion)
     }
+
+    // ── Loader leniency parity with Swift ──────────────────────
+    //
+    // Mirrors `IsUSStateTests.swift`. states.json already carries a
+    // top-level `source_note` audit field that the loader silently
+    // ignores; this test fences that contract on both platforms.
+    // Companion to the IsOfacComprehensiveTests version-bump. (Part
+    // of the octet-sdks audit M13 lockstep fix.)
+
+    @Test
+    fun `decoder ignores unknown top-level keys including source_note`() {
+        val withExtraTopLevel = """
+            {
+              "list_id": "us_iso_3166_2_subdivisions",
+              "policy_version": "0.0.0-test",
+              "effective_date": "2026-01-01",
+              "source_note": "real top-level audit key already in states.json",
+              "audit_note": "second unknown key, also ignored",
+              "entries": []
+            }
+        """.trimIndent()
+        val parsed = UsStateList.decode(withExtraTopLevel)
+        assertEquals("us_iso_3166_2_subdivisions", parsed.listId)
+        assertTrue(parsed.entries.isEmpty())
+    }
+
+    @Test
+    fun `decoder ignores unknown per-entry keys`() {
+        val withExtraInEntry = """
+            {
+              "list_id": "us_iso_3166_2_subdivisions",
+              "policy_version": "0.0.0-test",
+              "effective_date": "2026-01-01",
+              "entries": [
+                { "code": "CA", "name": "California", "kind": "state", "audit_internal": "ignored" }
+              ]
+            }
+        """.trimIndent()
+        val parsed = UsStateList.decode(withExtraInEntry)
+        assertEquals(1, parsed.entries.size)
+        assertEquals("CA", parsed.entries[0].code)
+    }
 }

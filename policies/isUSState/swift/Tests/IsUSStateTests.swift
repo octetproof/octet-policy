@@ -105,4 +105,44 @@ final class IsUSStateTests: XCTestCase {
     func test_list_policy_version_matches_package_version() {
         XCTAssertEqual(UsStateList.file.policyVersion, PolicyPackage.version)
     }
+
+    // MARK: - Loader leniency parity with Kotlin
+    //
+    // Mirrors `IsUSStateTests.kt`. states.json already carries a
+    // top-level `source_note` audit field that the loader silently
+    // ignores; this test fences that contract on both platforms.
+    // Companion to the IsOfacComprehensiveTests parity test. (Part
+    // of the octet-sdks audit M13 lockstep fix.)
+
+    func test_decoder_ignores_unknown_top_level_keys_including_source_note() throws {
+        let json = """
+        {
+          "list_id": "us_iso_3166_2_subdivisions",
+          "policy_version": "0.0.0-test",
+          "effective_date": "2026-01-01",
+          "source_note": "real top-level audit key already in states.json",
+          "audit_note": "second unknown key, also ignored",
+          "entries": []
+        }
+        """.data(using: .utf8)!
+        let parsed = try UsStateList.decode(json)
+        XCTAssertEqual(parsed.listId, "us_iso_3166_2_subdivisions")
+        XCTAssertTrue(parsed.entries.isEmpty)
+    }
+
+    func test_decoder_ignores_unknown_per_entry_keys() throws {
+        let json = """
+        {
+          "list_id": "us_iso_3166_2_subdivisions",
+          "policy_version": "0.0.0-test",
+          "effective_date": "2026-01-01",
+          "entries": [
+            { "code": "CA", "name": "California", "kind": "state", "audit_internal": "ignored" }
+          ]
+        }
+        """.data(using: .utf8)!
+        let parsed = try UsStateList.decode(json)
+        XCTAssertEqual(parsed.entries.count, 1)
+        XCTAssertEqual(parsed.entries.first?.code, "CA")
+    }
 }

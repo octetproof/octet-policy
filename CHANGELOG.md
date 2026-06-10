@@ -11,7 +11,17 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-- Nothing yet.
+### Fixed
+
+- **OFAC loader JSON-strictness parity (M13).** The Kotlin
+  `OfacList` loader now uses
+  `Json { ignoreUnknownKeys = true }`, matching the Swift loader's
+  default `JSONDecoder` behaviour and the existing `UsStateList`
+  loader on both platforms. Without this, adding any audit-metadata
+  field to `countries.json` would have crashed the Android build
+  only — a hard parity break on the highest-stakes (sanctions)
+  policy. Cross-platform unknown-key tests now fence both loaders
+  on both platforms.
 
 ## [0.0.2-alpha] — 2026-06-04
 
