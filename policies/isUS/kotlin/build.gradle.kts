@@ -29,7 +29,7 @@ android {
 
 dependencies {
     implementation(project(":policy-core"))
-    api("com.octetproof:sdk:0.0.2-alpha")
+    api("com.octetproof:sdk:1.0.0")
 
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
