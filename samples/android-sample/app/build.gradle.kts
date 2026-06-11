@@ -27,7 +27,7 @@ android {
         minSdk = 30   // the octet-sdk AAR (via octetpolicy) requires minSdk 30
         targetSdk = 34
         versionCode = 1
-        versionName = "0.0.2-alpha"
+        versionName = "1.0.0"
 
         buildConfigField("String", "OCTET_LICENSE_KEY", "\"$octetLicenseKey\"")
     }
@@ -56,7 +56,7 @@ android {
 dependencies {
     // The umbrella artifact. Pulls in every predicate plus PolicyResult
     // and (transitively) the octet-sdk API (Octet, OctetLoc, OctetRegion).
-    implementation("com.octetproof:octetpolicy:0.0.2-alpha")
+    implementation("com.octetproof:octetpolicy:1.0.0")
 
     // Compose + AndroidX.
     implementation("androidx.activity:activity-compose:1.9.0")

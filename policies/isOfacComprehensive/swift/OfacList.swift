@@ -67,13 +67,23 @@ enum OfacList {
     static let file: OfacListFile = loadFromBundle()
     static var entries: [OfacEntry] { file.entries }
 
+    /// Test seam exposing the loader's exact JSON decoder. Lets the
+    /// parity tests pin lockstep with the Kotlin side — a regression
+    /// to strict decoding here fails those tests. `JSONDecoder` is
+    /// lenient by default (unknown keys silently ignored), and that
+    /// behaviour is load-bearing: `countries.json` may grow audit
+    /// metadata fields that we don't decode into typed properties.
+    static func decode(_ data: Data) throws -> OfacListFile {
+        try JSONDecoder().decode(OfacListFile.self, from: data)
+    }
+
     private static func loadFromBundle() -> OfacListFile {
         guard let url = Bundle.module.url(forResource: "countries", withExtension: "json") else {
             fatalError("IsOfacComprehensive: countries.json missing from module bundle. This is a build error.")
         }
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode(OfacListFile.self, from: data)
+            return try decode(data)
         } catch {
             fatalError("IsOfacComprehensive: countries.json failed to decode: \(error). This is a build error.")
         }

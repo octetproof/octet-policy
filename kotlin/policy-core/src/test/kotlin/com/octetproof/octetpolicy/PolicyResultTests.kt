@@ -82,7 +82,7 @@ class PolicyResultTests {
         // until PolicyPackage.VERSION is bumped too. The CI
         // version-sync lint provides a stricter parity check across
         // every place the version is hardcoded.
-        assertEquals("0.0.2-alpha", PolicyPackage.VERSION)
+        assertEquals("1.0.0", PolicyPackage.VERSION)
     }
 
     @Test

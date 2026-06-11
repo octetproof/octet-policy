@@ -11,7 +11,49 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-- Nothing yet.
+## [1.0.0] — 2026-06-11
+
+> **First stable release.** OctetPolicy's public API, policy data
+> lists, and on-disk surface are committed to under semantic
+> versioning from this release forward — backwards-compatible
+> changes ship as 1.x.x.
+
+### Changed
+
+- Bumped the upstream `OctetSDK` pin to `1.0.0` on both platforms
+  (`com.octetproof:sdk:1.0.0`, `octet-sdk-ios` exact `1.0.0`).
+  Drop-in upgrade from `0.0.2-alpha` — license keys issued for
+  `0.0.2-alpha` continue to verify against `1.0.0` (last
+  wire-breaking license-key cutover was at SDK `0.0.2-alpha`).
+- octetpolicy's own public API and the policy data lists are
+  **unchanged** from `0.0.2-alpha`. Only the SDK pin moved.
+
+### Fixed
+
+- **OFAC loader JSON-strictness parity (M13).** The Kotlin
+  `OfacList` loader now uses
+  `Json { ignoreUnknownKeys = true }`, matching the Swift loader's
+  default `JSONDecoder` behaviour and the existing `UsStateList`
+  loader on both platforms. Without this, adding any audit-metadata
+  field to `countries.json` would have crashed the Android build
+  only — a hard parity break on the highest-stakes (sanctions)
+  policy. Cross-platform unknown-key tests now fence both loaders
+  on both platforms.
+
+### Notes for consumers
+
+- The OctetSDK's `Octet.start(config:, startPosition:)` and
+  `loc.isWithin(region:, atTime:)` signatures are unchanged — no
+  call-site edits required.
+- SDK `1.0.0` carries forward the intervening alpha changes
+  (transparent to OctetPolicy consumers): opt-in proof upload via
+  `OctetConfig.proofUploadUrl` (default off), opt-in TLS
+  public-key pinning, hardware-backed key storage with
+  `DeviceKeySecurityLevel` reporting, fail-closed on-device proof
+  verifier, magnetometer-based liveness signal, and a narrowed
+  public-API surface scoped to the documented `OctetSDK` types.
+  See the SDK CHANGELOGs for the full list.
+- `0.0.2-alpha` is **deprecated**.
 
 ## [0.0.2-alpha] — 2026-06-04
 
