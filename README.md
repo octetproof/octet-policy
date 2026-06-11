@@ -1,7 +1,7 @@
 # OctetPolicy
 
 Open-source policy predicates for the
-[OctetSDK](https://sdk.octetproof.com) location proofs.
+[OctetSDK](https://octetproof.com/) location proofs.
 
 The OctetSDK ships a fact: a signed, attested claim about where a
 device is. This library ships predicate functions that answer
@@ -14,23 +14,22 @@ code.
 
 ## Status
 
-Pre-stable — currently `0.0.2-alpha`. API, naming, and on-disk
-surface may still change across `0.0.x`. `v1.0.0` will be the first
-stable release.
+Stable — currently `1.0.0`. Public API, policy data lists, and
+on-disk surface are committed to under semantic versioning;
+backwards-compatible changes ship as `1.x.x`.
 
 ## License
 
 [Apache License 2.0](LICENSE). See also [`NOTICE`](NOTICE).
 
 This library is open source. The
-[OctetSDK](https://sdk.octetproof.com) — which provides the
+[OctetSDK](https://octetproof.com/) — which provides the
 `OctetLoc` every predicate queries — is **commercial and requires a
 license**. You can read, fork, and copy this policy library freely;
 you cannot use it usefully at runtime without a valid OctetSDK
 license. Sign up for a key (a free trial works for evaluation) at
-[sdk.octetproof.com/signup](https://sdk.octetproof.com/signup). SDK
-documentation lives at
-[docs.octetproof.com](https://docs.octetproof.com).
+[octetproof.com](https://octetproof.com/). SDK documentation lives
+at [docs.octetproof.com](https://docs.octetproof.com).
 
 ## v1 predicates
 
@@ -52,7 +51,7 @@ OctetSDK.
 ```swift
 // Package.swift
 dependencies: [
-    .package(url: "https://github.com/octetproof/octet-policy", exact: "0.0.2-alpha"),
+    .package(url: "https://github.com/octetproof/octet-policy", exact: "1.0.0"),
 ],
 targets: [
     .target(
@@ -100,7 +99,7 @@ In your app `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.octetproof:octetpolicy:0.0.2-alpha")
+    implementation("com.octetproof:octetpolicy:1.0.0")
 }
 ```
 
@@ -116,7 +115,7 @@ dependencies {
 import OctetPolicy   // one import — predicates + the re-exported SDK API
 
 // Start the OctetSDK once (needs your license key from
-// sdk.octetproof.com/signup), then hand its `loc` to any predicate.
+// octetproof.com), then hand its `loc` to any predicate.
 // The predicate runs the containment queries and returns a structured
 // PolicyResult.
 let sdk = try await Octet.start(
@@ -235,7 +234,7 @@ fire:
 
 ## Acknowledgements
 
-Built on the [OctetSDK](https://sdk.octetproof.com). OFAC data
+Built on the [OctetSDK](https://octetproof.com/). OFAC data
 sourced from the U.S. Treasury Department's Office of Foreign Assets
 Control public site; see each policy's `sources.md` for
 primary-source URLs.

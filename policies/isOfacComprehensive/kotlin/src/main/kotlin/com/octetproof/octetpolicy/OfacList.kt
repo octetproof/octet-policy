@@ -67,13 +67,26 @@ internal object OfacList {
     val file: OfacListFile by lazy { loadFromClasspath() }
     val entries: List<OfacEntry> get() = file.entries
 
+    // Lenient JSON: countries.json may grow audit metadata fields
+    // (per-entry or top-level) that we don't decode into typed
+    // properties. Mirrors Swift's JSONDecoder behaviour (unknown
+    // keys silently ignored) so the two platforms stay in lockstep
+    // on what counts as a valid file. Malformed data still throws.
+    private val json = Json { ignoreUnknownKeys = true }
+
+    /** Test seam exposing the loader's exact JSON decoder. Lets the
+     *  parity tests pin lockstep with the Swift side — a regression
+     *  to strict decoding here fails those tests. */
+    internal fun decode(text: String): OfacListFile =
+        json.decodeFromString<OfacListFile>(text)
+
     private fun loadFromClasspath(): OfacListFile {
         val resourceStream = OfacList::class.java.classLoader
             .getResourceAsStream("countries.json")
             ?: error("IsOfacComprehensive: countries.json missing from classpath. This is a build error.")
         val text = resourceStream.bufferedReader().use { it.readText() }
         return try {
-            Json.decodeFromString<OfacListFile>(text)
+            decode(text)
         } catch (e: Exception) {
             error("IsOfacComprehensive: countries.json failed to decode: $e. This is a build error.")
         }

@@ -62,13 +62,19 @@ internal object UsStateList {
     // Swift's JSONDecoder behaviour (unknown keys silently ignored).
     private val json = Json { ignoreUnknownKeys = true }
 
+    /** Test seam exposing the loader's exact JSON decoder. Lets the
+     *  parity tests pin lockstep with the Swift side — a regression
+     *  to strict decoding here fails those tests. */
+    internal fun decode(text: String): UsStateListFile =
+        json.decodeFromString<UsStateListFile>(text)
+
     private fun loadFromClasspath(): UsStateListFile {
         val resourceStream = UsStateList::class.java.classLoader
             .getResourceAsStream("states.json")
             ?: error("IsUSState: states.json missing from classpath. This is a build error.")
         val text = resourceStream.bufferedReader().use { it.readText() }
         return try {
-            json.decodeFromString<UsStateListFile>(text)
+            decode(text)
         } catch (e: Exception) {
             error("IsUSState: states.json failed to decode: $e. This is a build error.")
         }

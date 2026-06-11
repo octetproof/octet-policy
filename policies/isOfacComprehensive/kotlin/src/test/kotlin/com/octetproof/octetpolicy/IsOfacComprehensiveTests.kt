@@ -143,4 +143,58 @@ class IsOfacComprehensiveTests {
         assertEquals("isOfacComprehensive", result.policyName)
         assertEquals(PolicyPackage.VERSION, result.policyVersion)
     }
+
+    // ── Loader leniency parity with Swift ──────────────────────
+    //
+    // Mirrors `IsOfacComprehensiveTests.swift`. countries.json may
+    // grow audit-metadata fields (top-level or per-entry) the way
+    // states.json already grew `source_note`. The Swift loader
+    // tolerates unknown keys by default (JSONDecoder); Kotlin's
+    // default does not. We fence that divergence here so a future
+    // regression to strict decoding on either platform fails the
+    // build, not production. (Latent fix for octet-sdks audit M13.)
+
+    @Test
+    fun `decoder ignores unknown top-level keys`() {
+        // Real file shape + a top-level key we don't decode into a
+        // typed property. If the loader's Json instance reverts to
+        // strict mode this assertion throws.
+        val withExtraTopLevel = """
+            {
+              "list_id": "ofac_comprehensive",
+              "policy_version": "0.0.0-test",
+              "effective_date": "2026-01-01",
+              "audit_note": "trailing key the loader must ignore",
+              "entries": []
+            }
+        """.trimIndent()
+        val parsed = OfacList.decode(withExtraTopLevel)
+        assertEquals("ofac_comprehensive", parsed.listId)
+        assertTrue(parsed.entries.isEmpty())
+    }
+
+    @Test
+    fun `decoder ignores unknown per-entry keys`() {
+        val withExtraInEntry = """
+            {
+              "list_id": "ofac_comprehensive",
+              "policy_version": "0.0.0-test",
+              "effective_date": "2026-01-01",
+              "entries": [
+                {
+                  "iso_3166_1": "CU",
+                  "name": "Cuba",
+                  "subdivision": null,
+                  "source_url": "https://example.test",
+                  "added_on": "2026-01-01",
+                  "reviewed_by": "@reviewer",
+                  "audit_internal": "trailing per-entry key the loader must ignore"
+                }
+              ]
+            }
+        """.trimIndent()
+        val parsed = OfacList.decode(withExtraInEntry)
+        assertEquals(1, parsed.entries.size)
+        assertEquals("CU", parsed.entries[0].iso3166_1)
+    }
 }
