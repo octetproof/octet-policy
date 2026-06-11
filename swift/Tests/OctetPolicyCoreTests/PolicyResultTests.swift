@@ -68,7 +68,7 @@ final class PolicyResultTests: XCTestCase {
         // until PolicyPackage.version is bumped too. The CI
         // version-sync lint provides a stricter parity check across
         // every place the version is hardcoded.
-        XCTAssertEqual(PolicyPackage.version, "0.0.2-alpha")
+        XCTAssertEqual(PolicyPackage.version, "1.0.0")
     }
 
     func test_equality_when_all_fields_match() {

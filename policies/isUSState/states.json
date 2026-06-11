@@ -1,6 +1,6 @@
 {
   "list_id": "us_iso_3166_2_subdivisions",
-  "policy_version": "0.0.2-alpha",
+  "policy_version": "1.0.0",
   "effective_date": "2026-05-25",
   "source_note": "ISO 3166-2:US — 50 states, the District of Columbia, and 5 unincorporated territories. Codes are listed WITHOUT the 'US-' prefix.",
   "entries": [
