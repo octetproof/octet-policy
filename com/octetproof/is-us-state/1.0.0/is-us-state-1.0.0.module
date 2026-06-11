@@ -1,0 +1,104 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.octetproof",
+    "module": "is-us-state",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-us-state-1.0.0.aar",
+          "url": "is-us-state-1.0.0.aar",
+          "size": 23608,
+          "sha512": "ce732100d713c8a047091e20635238835fe65f81a4f69d6d3a01b224c9d61e41fa5158288391e2012c1a4a353cc1b20b4f46444920110ea8e279c6099ee7d3f2",
+          "sha256": "3b4fe49a6fbb84e2cf5060037f664c285bcbc0f85f947af6d16d1202d9052064",
+          "sha1": "17cdc5c6f2607fdbc2ec03a13a5d0c4b22f8fee4",
+          "md5": "2f4bce5b0b47f98e5ee60197f9e6192e"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.octetproof",
+          "module": "policy-core",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "com.octetproof",
+          "module": "sdk",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "is-us-state-1.0.0.aar",
+          "url": "is-us-state-1.0.0.aar",
+          "size": 23608,
+          "sha512": "ce732100d713c8a047091e20635238835fe65f81a4f69d6d3a01b224c9d61e41fa5158288391e2012c1a4a353cc1b20b4f46444920110ea8e279c6099ee7d3f2",
+          "sha256": "3b4fe49a6fbb84e2cf5060037f664c285bcbc0f85f947af6d16d1202d9052064",
+          "sha1": "17cdc5c6f2607fdbc2ec03a13a5d0c4b22f8fee4",
+          "md5": "2f4bce5b0b47f98e5ee60197f9e6192e"
+        }
+      ]
+    }
+  ]
+}
