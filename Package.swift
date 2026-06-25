@@ -47,7 +47,7 @@ let package = Package(
     dependencies: [
         // Public SwiftPM URL — resolves the binary xcframework target.
         // Package identity is the repo basename, "octet-sdk-ios".
-        .package(url: "https://github.com/octetproof/octet-sdk-ios", exact: "1.0.0"),
+        .package(url: "https://github.com/octetproof/octet-sdk-ios", exact: "1.1.0"),
     ],
     targets: [
         .target(

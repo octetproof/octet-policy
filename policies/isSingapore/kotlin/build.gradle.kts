@@ -32,7 +32,7 @@ dependencies {
     implementation(project(":policy-core"))
     // `api` so consumers of this module see OctetLoc / OctetRegion /
     // OctetVerdict (needed to name sdk.loc at the call site).
-    api("com.octetproof:sdk:1.0.0")
+    api("com.octetproof:sdk:1.1.0")
 
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")

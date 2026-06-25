@@ -11,6 +11,15 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Bumped the upstream `OctetSDK` pin to `1.1.0` on both platforms
+  (`com.octetproof:sdk:1.1.0`, `octet-sdk-ios` exact `1.1.0`).
+  Drop-in upgrade from `1.0.0` — the SDK 1.1.0 release is
+  backwards-compatible (additive public-API changes, proof wire
+  format unchanged). OctetPolicy's own public API and the policy
+  data lists are unchanged.
+
 ## [1.0.0] — 2026-06-11
 
 > **First stable release.** OctetPolicy's public API, policy data
