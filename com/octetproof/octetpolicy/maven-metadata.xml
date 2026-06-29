@@ -3,11 +3,11 @@
   <groupId>com.octetproof</groupId>
   <artifactId>octetpolicy</artifactId>
   <versioning>
-    <latest>1.0.0</latest>
-    <release>1.0.0</release>
+    <latest>0.0.2-alpha</latest>
+    <release>0.0.2-alpha</release>
     <versions>
-      <version>1.0.0</version>
+      <version>0.0.2-alpha</version>
     </versions>
-    <lastUpdated>20260629123431</lastUpdated>
+    <lastUpdated>20260629123442</lastUpdated>
   </versioning>
 </metadata>
