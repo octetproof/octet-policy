@@ -39,10 +39,10 @@
           "name": "policy-core-1.0.0.jar",
           "url": "policy-core-1.0.0.jar",
           "size": 6425,
-          "sha512": "1ddf766c4ad4179780645fe20366c587fb9b91a1218d56b8d04da8d604ca3536916ca994a32dc46d17b61706618cc116fe33aaa9e3ac2556a831d8273acffaf3",
-          "sha256": "05b721b4b79b7def9f0a7bb75aebd7792ae3411c66f88274296390883f9693e4",
-          "sha1": "d6add425dc1b7448ed469a60605138e8b02dc039",
-          "md5": "1239ef457b4d466bd4bbab2ee2d612a6"
+          "sha512": "59eb6f048a4b4524b0948124f3c565360285091fc5694268abd85515078e83a24676ce5444fe3de489747b2c112372bb43ee2ed8ccefb5b383dd69a73a725f37",
+          "sha256": "6c11b31941b884798e572572bd4b443d43a83d75e0b1ed11a993b80ba1d731ff",
+          "sha1": "429841f4ffeede350c08f4240284bec16d60b800",
+          "md5": "55e06fbab6356382a9698ea691d27f9c"
         }
       ]
     },
@@ -71,10 +71,10 @@
           "name": "policy-core-1.0.0.jar",
           "url": "policy-core-1.0.0.jar",
           "size": 6425,
-          "sha512": "1ddf766c4ad4179780645fe20366c587fb9b91a1218d56b8d04da8d604ca3536916ca994a32dc46d17b61706618cc116fe33aaa9e3ac2556a831d8273acffaf3",
-          "sha256": "05b721b4b79b7def9f0a7bb75aebd7792ae3411c66f88274296390883f9693e4",
-          "sha1": "d6add425dc1b7448ed469a60605138e8b02dc039",
-          "md5": "1239ef457b4d466bd4bbab2ee2d612a6"
+          "sha512": "59eb6f048a4b4524b0948124f3c565360285091fc5694268abd85515078e83a24676ce5444fe3de489747b2c112372bb43ee2ed8ccefb5b383dd69a73a725f37",
+          "sha256": "6c11b31941b884798e572572bd4b443d43a83d75e0b1ed11a993b80ba1d731ff",
+          "sha1": "429841f4ffeede350c08f4240284bec16d60b800",
+          "md5": "55e06fbab6356382a9698ea691d27f9c"
         }
       ]
     }
