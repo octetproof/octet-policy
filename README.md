@@ -1,5 +1,13 @@
 # OctetPolicy
 
+> **Retired.** This library is no longer maintained, and this repository is archived.
+> Version 1.0.0 stays installable from here (Swift Package Manager, and the Maven
+> repository on the `mvn-repo` branch), but it gets no further changes or fixes.
+> Location policies are now signed bundles that the Octet policy engine decides
+> against the device's location proofs, with a signed receipt for every answer.
+> The current SDK and policy documentation is at
+> [docs.octetproof.com](https://docs.octetproof.com).
+
 Open-source policy predicates for the
 [OctetSDK](https://octetproof.com/) location proofs.
 
@@ -14,9 +22,9 @@ code.
 
 ## Status
 
-Stable — currently `1.0.0`. Public API, policy data lists, and
-on-disk surface are committed to under semantic versioning;
-backwards-compatible changes ship as `1.x.x`.
+Retired at `1.0.0`. There will be no further releases, including fixes to the
+policy data lists. The OFAC list in `isOfacComprehensive` is the one effective
+2026-05-25. Check current sanctions before relying on it.
 
 ## License
 
